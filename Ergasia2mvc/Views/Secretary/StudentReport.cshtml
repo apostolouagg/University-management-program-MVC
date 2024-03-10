@@ -1,0 +1,73 @@
+﻿@model Ergasia2mvc.Models.AddToStudentReportViewModel
+
+<div class="text-center">
+    <h1 class="mb-5">Add Course to Student's Report</h1>
+
+    <form method="post" action="StudentReport">
+
+        <div class="float-start">
+            <p>Course <b>@ViewBag.CourseName</b> is in these Students' Reports:</p>
+
+            @if (ViewBag.StudentIDs != null)
+            {
+                <div class="float-start">
+                    @foreach (var thing in ViewBag.StudentIDs)
+                    {
+                        <p>@thing</p>
+                    }
+                </div>
+            }
+        </div>
+
+        
+
+
+        <div class="float-end">
+            @using (Html.BeginForm())
+            {
+                <p>Select Student to add the Course to their Report: </p>
+                <div class="input-group mb-3">
+
+                    <select id="custom-select" class="inputGroupSelect02" asp-for="StudentId">
+                        @foreach (Student student in ViewBag.Students)
+                        {
+                            bool flag = false;
+                            if (ViewBag.StudentIDs != null)
+                            {
+                                @foreach (var th in ViewBag.StudentIDs)
+                                {
+                                    if (student.RegistrationNumber.Equals(th))
+                                    {
+                                        flag = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            
+
+                            if (flag)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                <option value="@student.RegistrationNumber">@student.RegistrationNumber</option>
+                            }
+
+
+                        }
+                    </select>
+                </div>
+
+                <input type="hidden" class="form-control" value="@ViewBag.SelectedCourseId" asp-for="CourseId">
+                <input type="hidden" class="form-control" value="@ViewBag.Secname" asp-for="secName">
+
+
+                <input class="btn btn-primary" type="submit" value="Submit" />
+            }
+        </div>
+        
+
+        
+    </form>
+</div>

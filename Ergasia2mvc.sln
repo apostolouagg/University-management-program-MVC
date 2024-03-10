@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ergasia2mvc", "Ergasia2mvc\Ergasia2mvc.csproj", "{89C0C611-ECFE-4158-AA8E-AAC16FF2C3D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89C0C611-ECFE-4158-AA8E-AAC16FF2C3D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C0C611-ECFE-4158-AA8E-AAC16FF2C3D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C0C611-ECFE-4158-AA8E-AAC16FF2C3D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C0C611-ECFE-4158-AA8E-AAC16FF2C3D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D38E6F1-C408-45AE-B35A-5778B0DE4B68}
+	EndGlobalSection
+EndGlobal

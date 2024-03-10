@@ -1,0 +1,49 @@
+﻿@model Ergasia2mvc.Models.AddCourseViewModel
+
+@if (ViewBag.flag == true)
+{
+    <script>
+        alert('@ViewBag.AlertMessage');
+    </script>
+}
+
+<h1 class="mb-3">Add Course</h1>
+
+<div>
+    <form method="post" action="AddCourse">
+        <div class="mb-3">
+            <label for="" class="form-label">Course Title</label>
+            <input type="text" class="form-control" placeholder="ex. C#" asp-for="CourseTitle">
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <div>
+                <p>Choose Semester: </p>
+                <div class="input-group mb-3">
+                    <select id="custom-select" class="inputGroupSelect02" asp-for="CourseSemester">
+                        @for (int i = 1; i < 9; i++)
+                        {
+                            <option value="@i.ToString()">@i</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+
+            <p>Assign Professor: </p>
+            <div class="input-group mb-3">
+                <select id="custom-select" class="inputGroupSelect02" asp-for="ProfessorAFM">
+                    @foreach (Professor professor in ViewBag.Professors)
+                    {
+                        <option value="@professor.ProfessorUsername">@professor.ProfessorUsername</option>
+                    }
+                </select>
+            </div>
+
+            <input type="hidden" class="form-control" value="@ViewBag.Secname" asp-for="secName">
+
+            <input class="btn btn-primary" type="submit" value="Submit" />
+        }
+    </form>
+</div>

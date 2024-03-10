@@ -1,0 +1,45 @@
+﻿@model Ergasia2mvc.Models.GradeCourseViewModel
+
+<h1 class="mb-3">Grade Student</h1>
+
+<div>
+    <form method="post" action="ProfessorGradeIndex">
+        <div class="mb-3">
+            <label for="" class="form-label">Course Id</label>
+            <input type="text" readonly class="form-control" asp-for="CourseId">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Course Title</label>
+            <input type="text" readonly class="form-control" asp-for="CourseTitle">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Course Semester</label>
+            <input type="text" readonly class="form-control" asp-for="CourseSemester">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Current Student's Report</label>
+            <input type="text" readonly class="form-control" value="@ViewBag.StudentID" asp-for="StudentId">
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <p>Grade: </p>
+            <div class="input-group mb-3">
+                <select id="custom-select" class="inputGroupSelect02" asp-for="Grade">
+                    @for(int i =0; i<11; i++)
+                    {
+                        <option value="@i.ToString()">@i</option>
+                    }
+                </select>
+            </div>
+
+            <input type="hidden" class="form-control" value="@ViewBag.profName" asp-for="profName">
+
+
+            <input class="btn btn-primary" type="submit" value="Submit" />
+        }
+    </form>
+</div>

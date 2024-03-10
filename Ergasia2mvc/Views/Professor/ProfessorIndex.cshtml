@@ -1,0 +1,63 @@
+﻿@model Ergasia2mvc.Models.LoginViewModel
+
+<div class="float-end">
+    <p class="mb-3">You are logged in as: <b>@ViewBag.Professor</b></p>
+    <a class="btn btn-primary float-end" href="@Url.Action("Login", "User")">Log Out</a>
+</div>
+
+<div>
+    @foreach (Student s in ViewBag.StudentsList)
+    {
+        <h2 class="display-6">Courses Of: <b>@s.RegistrationNumber</b></h2>
+
+        <table class="table text-center mb-5">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Semester</th>
+                    <th>Grade</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (CourseHasStudents c in ViewBag.courseHasStudents)
+                {
+                    if (s.RegistrationNumber.Equals(c.StudentID))
+                    {
+                        foreach (Course course in ViewBag.courseList)
+                        {
+                            if (c.CourseID.Equals(course.CourseId) && course.ProfessorAFM.Equals(ViewBag.Professor))
+                            {
+                                if (!c.GradeCourseStudent.Equals("-"))
+                                {
+                                    <tr>
+                                        <td>@course.CourseId</td>
+                                        <td>@course.CourseTitle</td>
+                                        <td>@course.CourseSemester</td>
+                                        <td>@c.GradeCourseStudent</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td>@course.CourseId</td>
+                                        <td>@course.CourseTitle</td>
+                                        <td>@course.CourseSemester</td>
+                                        <td>@c.GradeCourseStudent</td>
+                                        <td>
+                                            <a href="@Url.Action("ProfessorGradeIndex", "Professor", c)">Grade</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>

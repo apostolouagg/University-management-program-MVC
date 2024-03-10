@@ -1,0 +1,48 @@
+﻿@model Ergasia2mvc.Models.AddStudentViewModel
+
+@if (ViewBag.flag == true)
+{
+    <script>
+        alert('@ViewBag.AlertMessage');
+    </script>
+}
+
+<h1 class="mb-3">Add Student</h1>
+
+<div>
+    <form method="post" action="AddStudent">
+        <div class="mb-3">
+            <label for="" class="form-label">Registration Number</label>
+            <input type="text" class="form-control" placeholder="ex. h7ei2o (Registration Number must be 6 letters or digits)" asp-for="RegistrationNumber">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Name</label>
+            <input type="text" class="form-control" placeholder="ex. Antonia (Name must be letters only)" asp-for="Name">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Surname</label>
+            <input type="text" class="form-control" placeholder="ex. Giannoulaki (Surname must be letters only)" asp-for="Surname">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Department</label>
+            <input type="text" class="form-control" placeholder="ex. CS (Department must be letters only)" asp-for="Department">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Username</label>
+            <input type="text" class="form-control" placeholder="ex. antonia123 (Username must NOT contain symbols)" asp-for="StudentUsername">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Password</label>
+            <input type="text" class="form-control" placeholder="ex. 12345" asp-for="Password">
+        </div>
+
+        <input type="hidden" class="form-control" value="@ViewBag.Secname" asp-for="secName">
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

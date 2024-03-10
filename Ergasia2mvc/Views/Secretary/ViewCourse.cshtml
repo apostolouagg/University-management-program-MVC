@@ -1,0 +1,53 @@
+﻿@model Ergasia2mvc.Models.AssignProfessorViewModel
+
+<h1 class="mb-3">Assign Different Professor</h1>
+
+<div>
+    <form method="post" action="ViewCourse">
+        <div class="mb-3">
+            <label for="" class="form-label">Course Id</label>
+            <input type="text" readonly class="form-control" asp-for="CourseId">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Course Title</label>
+            <input type="text" readonly class="form-control" asp-for="CourseTitle">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Course Semester</label>
+            <input type="text" readonly class="form-control" asp-for="CourseSemester">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Current Assigned Professor</label>
+            <input type="text" readonly class="form-control" value="@ViewBag.assignedProf">
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <p>Assign different Professor: </p>
+            <div class="input-group mb-3">
+                <select id="custom-select" class="inputGroupSelect02" asp-for="ProfessorAFM">
+                    @foreach (Professor professor in ViewBag.Professors)
+                    {
+                        if (professor.ProfessorUsername.Equals(ViewBag.assignedProf))
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            <option value="@professor.ProfessorUsername">@professor.ProfessorUsername</option>
+                        }
+                        
+                    }
+                </select>
+            </div>
+
+            <input type="hidden" class="form-control" value="@ViewBag.Secname" asp-for="secName">
+            
+
+            <input class="btn btn-primary" type="submit" value="Submit" />
+        }
+    </form>
+</div>

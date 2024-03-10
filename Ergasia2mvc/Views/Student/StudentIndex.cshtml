@@ -1,0 +1,102 @@
+﻿@{
+    int courses = 0;
+    int grades = 0;
+}
+
+<div class="float-end">
+    <p class="mb-3">You are logged in as: <b>@ViewBag.Student</b></p>
+    <a class="btn btn-primary float-end" href="@Url.Action("Login", "User")">Log Out</a>
+</div>
+
+<!--All Courses-->
+<div>
+
+    <h2>All Courses</h2>
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Professor</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+    
+        <tbody>
+            @foreach (Course course in ViewBag.courseList)
+            {
+                @foreach (CourseHasStudents courseHasStudents in ViewBag.courseHasStudents)
+                {
+                    if (course.CourseId.Equals(courseHasStudents.CourseID) && courseHasStudents.StudentID.Equals(ViewBag.StudentLoggedInId))
+                    {
+                        <tr>             
+                            <td>@course.CourseId</td>
+                            <td>@course.CourseTitle</td>
+                            <td>@course.ProfessorAFM</td>
+                            <td>@courseHasStudents.GradeCourseStudent</td>
+                        </tr>
+
+                        courses +=1;
+
+                        if (!courseHasStudents.GradeCourseStudent.Equals("-"))
+                        {
+                            grades = grades + int.Parse(courseHasStudents.GradeCourseStudent);
+                        }
+
+                        break;
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!--Average Grade-->
+<div class="text-center mb-5">
+    <div class="d-inline-block"><h3>Average Grade:</h3></div>
+    <div class="d-inline-block"><h4>@((grades / courses).ToString())</h4></div>
+</div>
+
+
+<!--Semesters-->
+<div class="mb-5">
+    @for (int i = 1; i < 9; i++)
+    {
+        <h2>Semester @i</h2>
+
+        <table class="table text-center mb-5">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Professor</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Course course in ViewBag.courseList)
+                {
+                    if (course.CourseSemester.Equals(i.ToString()))
+                    {
+                        @foreach (CourseHasStudents courseHasStudents in ViewBag.courseHasStudents)
+                        {
+                            if (course.CourseId.Equals(courseHasStudents.CourseID) && courseHasStudents.StudentID.Equals(ViewBag.StudentLoggedInId))
+                            {
+                                <tr>
+                                    <td>@course.CourseId</td>
+                                    <td>@course.CourseTitle</td>
+                                    <td>@course.ProfessorAFM</td>
+                                    <td>@courseHasStudents.GradeCourseStudent</td>
+                                </tr>
+
+                                break;
+                            }
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    }
+</div>
